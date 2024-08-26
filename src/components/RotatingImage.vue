@@ -40,7 +40,7 @@
  
  pre {
    color: var(--app-color-secondary);
- } */
+ }
  
  .sticky {
    background-color: #1b1a2ea9 !important;
