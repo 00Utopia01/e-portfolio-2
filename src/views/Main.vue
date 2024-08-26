@@ -1,5 +1,5 @@
 <template>
-<!--     <WaveBackground> -->
+    <WaveBackground>
     <div class="container top-spacing">
         <div class='row'>
             <div class='col'>
@@ -40,7 +40,7 @@
         </div>
     </div>
 </div>
-<!-- </WaveBackground> -->
+</WaveBackground>
     
 </template>
 
@@ -48,8 +48,8 @@
 import RotatingImage from '../components/RotatingImage.vue'
 import BlurText from '../components/BlurText.vue'
 import ButtonToText from '../components/ButtonToText.vue'
-/* import Skills from '../components/Skills.vue'
-import WaveBackground from '../components/WaveBackground.vue' */
+/* import Skills from '../components/Skills.vue' */
+import WaveBackground from '../components/WaveBackground.vue'
 /* import TextMorph from '../components/TextMorph.vue' */
 function isMobile() {
    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
