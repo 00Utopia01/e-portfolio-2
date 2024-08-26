@@ -6,7 +6,7 @@
                 <h1 class="text">Hi! <br/>
                 My name is <strong class="gradient-text">EDOARDO GERMENÀ</strong><br/>
                 I'm a</h1>
-                <div v-show="!isMobile()"><!-- <BlurText/> --></div>
+                <div v-show="!isMobile()"><BlurText/></div>
             </div>
             <div class="col">
                 <RotatingImage/>
@@ -46,7 +46,7 @@
 
 <script setup>
 import RotatingImage from '../components/RotatingImage.vue'
-/* import BlurText from '../components/BlurText.vue' */
+import BlurText from '../components/BlurText.vue'
 /* import ButtonToText from '../components/ButtonToText.vue'
 import Skills from '../components/Skills.vue'
 import WaveBackground from '../components/WaveBackground.vue' */
