@@ -36,7 +36,7 @@
     <h2>YOU CAN CONTACT <strong class="main-name">ME</strong> HERE</h2>
     <div class="container">
         <div class='row'>
-<!--             <ButtonToText/> -->
+            <ButtonToText/>
         </div>
     </div>
 </div>
@@ -47,8 +47,8 @@
 <script setup>
 import RotatingImage from '../components/RotatingImage.vue'
 import BlurText from '../components/BlurText.vue'
-/* import ButtonToText from '../components/ButtonToText.vue'
-import Skills from '../components/Skills.vue'
+import ButtonToText from '../components/ButtonToText.vue'
+/* import Skills from '../components/Skills.vue'
 import WaveBackground from '../components/WaveBackground.vue' */
 /* import TextMorph from '../components/TextMorph.vue' */
 function isMobile() {
