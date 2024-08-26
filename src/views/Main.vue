@@ -29,7 +29,7 @@
         </div>
 </div>
 <h1>MY SKILLS</h1>
-<div class="wt-5"><!-- <Skills/> --></div>
+<div class="wt-5"><Skills/></div>
 
 
 <div class="container custom-spacing">
@@ -48,7 +48,7 @@
 import RotatingImage from '../components/RotatingImage.vue'
 import BlurText from '../components/BlurText.vue'
 import ButtonToText from '../components/ButtonToText.vue'
-/* import Skills from '../components/Skills.vue' */
+import Skills from '../components/Skills.vue'
 import WaveBackground from '../components/WaveBackground.vue'
 /* import TextMorph from '../components/TextMorph.vue' */
 function isMobile() {
