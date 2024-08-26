@@ -9,7 +9,7 @@
                 <div v-show="!isMobile()"><!-- <BlurText/> --></div>
             </div>
             <div class="col">
-<!--                 <RotatingImage/> -->
+                <RotatingImage/>
             </div>
         </div>
     </div>
@@ -45,9 +45,9 @@
 </template>
 
 <script setup>
-/* import RotatingImage from '../components/RotatingImage.vue'
-import BlurText from '../components/BlurText.vue'
-import ButtonToText from '../components/ButtonToText.vue'
+import RotatingImage from '../components/RotatingImage.vue'
+/* import BlurText from '../components/BlurText.vue' */
+/* import ButtonToText from '../components/ButtonToText.vue'
 import Skills from '../components/Skills.vue'
 import WaveBackground from '../components/WaveBackground.vue' */
 /* import TextMorph from '../components/TextMorph.vue' */
