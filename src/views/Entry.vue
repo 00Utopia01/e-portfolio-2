@@ -86,7 +86,7 @@ export default {
       document.documentElement.style.setProperty(variable, value);
     },
     getColors() {
-      return axios.post('http://127.0.0.1:5000/prompt', {
+      return axios.post('https://e-portfolio-back-end.vercel.app/prompt', {
         input: this.input
       })
       .then(response => response.data)
