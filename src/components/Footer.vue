@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-around" id="foot">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a href="#top" class="btn btn-primary back-to-top bg-dark btn-custom-border">Return to the Top</a>
+                    <a href="javascript:void(0);" class="btn btn-primary back-to-top bg-dark btn-custom-border" onclick="window.scrollTo(0, 0)">Return to the Top</a>
                 </li>
             </ul>
         </div>
@@ -13,6 +13,7 @@
     </div>
 
 </footer>
+
 </template>
 
 <style scoped>
