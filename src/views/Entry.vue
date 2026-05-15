@@ -5,8 +5,18 @@
       <div class="field">
         <form @submit.prevent="changeColors()">
           <input type="text" placeholder="How do you feel today?" v-model="input">
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            class="submit-btn"
+            :disabled="loading || !input.trim()"
+            :aria-busy="loading"
+            :aria-disabled="!input.trim()"
+            :aria-label="loading ? 'Loading' : 'Submit'">
+            <span v-if="!loading">Submit</span>
+            <span v-else class="spinner" aria-hidden="true"></span>
+          </button>
         </form>
+        <p class="error" v-if="errorMessage">{{ errorMessage }}</p>
         <div class="line"></div>
       </div>
     </div>
@@ -26,6 +36,8 @@ export default {
       dots: [],
       input: '',
       response: null,
+      errorMessage: '',
+      loading: false,
 /*       primary: '',
       secondary:'',
       accent: '',
@@ -64,6 +76,9 @@ export default {
       });
     },
     async changeColors() {
+      if (!this.input || !this.input.trim()) return;
+      this.errorMessage = '';
+      this.loading = true;
       try {
         const colors = await this.getColors();
         let primary = colors.primary
@@ -71,6 +86,10 @@ export default {
         let accent = colors.accent
         let text = colors.text
         let background = colors.background
+
+        if (!primary || !secondary || !accent || !text || !background) {
+          throw new Error('Invalid color response from server.\n Please insers a valid word');
+        }
 
         this.updateCSSVariable('--color-primary', primary);
         this.updateCSSVariable('--color-secondary', secondary);
@@ -80,19 +99,27 @@ export default {
         this.$router.push({ name: 'main' });
       } catch (error) {
         console.error('Error getting colors:', error);
+        this.errorMessage = error.message || 'An error occurred while requesting colors.';
+        this.resetCSSVariables();
+      } finally {
+        this.loading = false;
       }
     },
     updateCSSVariable(variable, value) {
       document.documentElement.style.setProperty(variable, value);
     },
+    resetCSSVariables() {
+      const variables = ['--color-primary', '--color-secondary', '--color-accent', '--color-text', '--color-background'];
+      variables.forEach(v => document.documentElement.style.removeProperty(v));
+    },
     getColors() {
-      return axios.post('https://e-portfolio-back-end.vercel.app/prompt', {
+      return axios.post('http://127.0.0.1:5000/prompt', {
         input: this.input
       })
       .then(response => response.data)
       .catch(error => {
-        this.response = error.data;
-        throw error;
+        const msg = (error.response && (error.response.data && (error.response.data.message || error.response.data))) || error.message || 'Request failed';
+        throw new Error(msg);
       });
     },
     }
@@ -166,6 +193,38 @@ body {
       color: #bdc3c7;
     }
 
+    .submit-btn[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .submit-btn {
+      margin-left: 8px;
+      padding: 8px 14px;
+      background: #ffffff;
+      color: var(--color-text);
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(0,0,0,0.12);
+      border-top-color: var(--color-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     input:focus {
       padding-bottom: 5px;
     }
@@ -197,6 +256,12 @@ body {
       transform: scaleX(0);
       transition: transform 0.3s ease;
       background: #0dd7ae;
+    }
+
+    .error {
+      color: #ff6b6b;
+      margin-top: 8px;
+      font-size: 0.95em;
     }
 
   </style>
